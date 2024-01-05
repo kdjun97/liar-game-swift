@@ -19,7 +19,7 @@ struct CreateRoomView: View {
                     liarPath.paths.removeLast()
                 }
             )
-            Image("create-room-logo")
+            Image("logo2")
                 .resizable()
                 .scaledToFit()
             
@@ -28,7 +28,6 @@ struct CreateRoomView: View {
                     .font(.system(size: 24))
                 Text("\(createRoomViewModel.myIPAddress)")
                     .font(.system(size: 24))
-                    .foregroundColor(.blue)
             }
             InfoSettingTextField(
                 placeHolder: "닉네임 설정",

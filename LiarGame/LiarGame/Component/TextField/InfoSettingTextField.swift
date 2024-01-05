@@ -17,7 +17,7 @@ struct InfoSettingTextField: View {
             placeHolder,
             text: text
         )
-        .padding()
+        .padding(.horizontal, 24)
         .textFieldStyle(.roundedBorder)
     }
 }

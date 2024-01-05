@@ -22,6 +22,7 @@
 		B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */; };
 		B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */; };
 		B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */; };
+		B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaivgationBar.swift; sourceTree = "<group>"; };
 		B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingTextField.swift; sourceTree = "<group>"; };
 		B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */,
+				B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */,
 			);
 			path = ConnectRoom;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */,
 				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
 				B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */,
+				B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */,
 				B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */,
 				B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */,
 				B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */,
