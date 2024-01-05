@@ -63,27 +63,39 @@ private struct HomeContentView: View {
                 .scaledToFit()
             CornerButton(
                 title: "방만들기",
+                fontSize: 48,
+                fontWeight: .bold,
                 buttonAction: {
                     liarPath.paths.append(.createRoom)
-                }
+                },
+                verticalPadding: 4.0
             )
             CornerButton(
                 title: "접속하기",
+                fontSize: 48,
+                fontWeight: .bold,
                 buttonAction: {
                     liarPath.paths.append(.connectRoom)
-                }
+                },
+                verticalPadding: 4.0
             )
             CornerButton(
                 title: "게임방법",
+                fontSize: 48,
+                fontWeight: .bold,
                 buttonAction: {
                     homeViewModel.isGameRuleSheetPresented = true
-                }
+                },
+                verticalPadding: 4.0
             )
             CornerButton(
                 title: "IP셋팅법",
+                fontSize: 48,
+                fontWeight: .bold,
                 buttonAction: {
                     homeViewModel.isIPSettingSheetPresented = true
-                }
+                },
+                verticalPadding: 4.0
             )
             Spacer()
         }

@@ -20,6 +20,8 @@
 		B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */; };
 		B7B372992B41CCA300D81D07 /* ConnectRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */; };
 		B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */; };
+		B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */; };
+		B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
 		B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomView.swift; sourceTree = "<group>"; };
 		B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaivgationBar.swift; sourceTree = "<group>"; };
+		B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingTextField.swift; sourceTree = "<group>"; };
+		B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 		B7B372862B41C0CC00D81D07 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B7CD8D2A2B48435C00E1DB20 /* TextField */,
 				B7B3729A2B41CE1200D81D07 /* NavigationBar */,
 				B7B372872B41C0E200D81D07 /* Button */,
 			);
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */,
+				B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */,
 			);
 			path = CreateRoom;
 			sourceTree = "<group>";
@@ -223,6 +229,14 @@
 				B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		B7CD8D2A2B48435C00E1DB20 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +377,8 @@
 				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
 				B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */,
 				B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */,
+				B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */,
+				B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
