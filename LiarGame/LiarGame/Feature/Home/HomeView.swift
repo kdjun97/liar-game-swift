@@ -110,7 +110,11 @@ private struct GameRuleView: View {
 
 private struct IPSettingView: View {
     fileprivate var body: some View {
-        Text("IP 셋팅법")
+        VStack(alignment: .leading) {
+            Text("1. 방만들기/접속하기 페이지에서 Load IP를 누른다.")
+            Text("2. 만약 이상한 영어와 숫자가 섞인 글이 뜬다면 WIFI를 연결 해제 후 재연결")
+            Text("3. IP 수동 확인법 : 설정 - WIFI - 연결된 와이파이 우측 느낌표 버튼 - IPv4 주소 확인")
+        }.padding()
     }
 }
 
