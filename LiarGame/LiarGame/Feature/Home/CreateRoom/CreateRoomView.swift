@@ -89,7 +89,11 @@ struct CreateRoomView: View {
                 }
                 Spacer()
             }
-        }.alert(isPresented: $createRoomViewModel.isShowAlert) {
+        }
+        .onAppear {
+            createRoomViewModel.loadIPTapped()
+        }
+        .alert(isPresented: $createRoomViewModel.isShowAlert) {
             alert ?? unKnownErrorAlert
         }
     }
