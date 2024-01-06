@@ -70,6 +70,7 @@ struct ConnectRoomView: View {
                                 let (state, clientSocket) = connectRoomViewModel.connectRoom()
                                 if let clientSocket = clientSocket {
                                     // TODO : Navigate To Chatting Room With clientSocket
+                                    liarPath.paths.append(.chatRoom)
                                 } else {
                                     alert = getAlert(state: state)
                                     if let _ = alert {

@@ -18,4 +18,5 @@ class LiarPath: ObservableObject {
 enum PathDestination {
     case createRoom
     case connectRoom
+    case chatRoom
 }

@@ -29,6 +29,10 @@ struct HomeView: View {
                             ConnectRoomView()
                                 .navigationBarBackButtonHidden(true)
                                 .environmentObject(liarPath)
+                        case .chatRoom:
+                            ChatRoomView()
+                                .navigationBarBackButtonHidden(true)
+                                .environmentObject(liarPath)
                         }
                     }
                 )
