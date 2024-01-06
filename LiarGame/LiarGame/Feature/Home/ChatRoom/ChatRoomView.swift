@@ -29,14 +29,14 @@ struct ChatRoomView: View {
                     Spacer()
                     HStack(spacing: 0) {
                         Spacer()
-                        CButton(
+                        SystemButton(
                             title: "게임시작",
                             buttonAction: {
                                 // TODO : Implement Game Start
                             }
                         )
                         Spacer()
-                        CButton(
+                        SystemButton(
                             title: "나가기",
                             buttonAction: {
                                 // TODO : Implement Game Exit
@@ -89,7 +89,7 @@ private struct IPAddressInfoView: View {
     }
 }
 
-private struct CButton: View {
+private struct SystemButton: View {
     let title: String
     let buttonAction: () -> Void
     
