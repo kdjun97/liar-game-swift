@@ -24,6 +24,9 @@
 		B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */; };
 		B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */; };
 		B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = B7CD8D332B49311E00E1DB20 /* Socket */; };
+		B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */; };
+		B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */; };
+		B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D3A2B497E1500E1DB20 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingTextField.swift; sourceTree = "<group>"; };
 		B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
 		B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D3A2B497E1500E1DB20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 		B7B372852B41C02300D81D07 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B7CD8D352B49613000E1DB20 /* ChatRoom */,
 				B7B372952B41CC9100D81D07 /* ConnectRoom */,
 				B7B372942B41CC8800D81D07 /* CreateRoom */,
 				B7B372582B41B17F00D81D07 /* HomeView.swift */,
@@ -198,6 +205,7 @@
 		B7B372902B41CA5F00D81D07 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B7CD8D3E2B49835100E1DB20 /* Model */,
 				B7B372912B41CABC00D81D07 /* Navigation */,
 			);
 			path = Core;
@@ -250,6 +258,23 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7CD8D352B49613000E1DB20 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */,
+				B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		B7CD8D3E2B49835100E1DB20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D3A2B497E1500E1DB20 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,7 +418,10 @@
 				B7B372572B41B17F00D81D07 /* RootApp.swift in Sources */,
 				B7B3728F2B41C9FC00D81D07 /* HomeViewModel.swift in Sources */,
 				B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */,
+				B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */,
+				B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */,
 				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
+				B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */,
 				B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */,
 				B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */,
 				B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */,

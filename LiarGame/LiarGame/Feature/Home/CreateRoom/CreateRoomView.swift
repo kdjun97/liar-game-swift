@@ -59,7 +59,16 @@ struct CreateRoomView: View {
                                 let (state, serverSocket) = createRoomViewModel.createRoom()
                                 if let serverSocket = serverSocket {
                                     // TODO : Navigate To Chatting Room With serverSocket
-                                    print("success")
+                                    liarPath.paths.append(
+                                        .chatRoom(
+                                            isServer: true,
+                                            user: User(
+                                                socket: serverSocket,
+                                                serverIP: createRoomViewModel.myIPAddress,
+                                                myIP: createRoomViewModel.myIPAddress
+                                            )
+                                        )
+                                    )
                                 } else {
                                     alert = getAlert(state: state)
                                     if let _ = alert {
