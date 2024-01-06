@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ChatRoomView: View {
     @EnvironmentObject private var liarPath: LiarPath
+    @StateObject var chatRoomViewModel : ChatRoomViewModel
     
     var body: some View {
         ZStack {
@@ -19,11 +20,11 @@ struct ChatRoomView: View {
                     VStack(spacing: 0) {
                         IPAddressInfoView(
                             title: "서버",
-                            ipAddress: "192.168.0.101"
+                            ipAddress: chatRoomViewModel.user.serverIP
                         ).padding(.bottom, 4)
                         IPAddressInfoView(
-                            title: "클라",
-                            ipAddress: "192.168.0.112"
+                            title: "나",
+                            ipAddress: chatRoomViewModel.user.myIP
                         )
                     }
                     Spacer()
@@ -105,8 +106,4 @@ private struct SystemButton: View {
         .background(.customPink)
         .cornerRadius(12)
     }
-}
-
-#Preview{
-    ChatRoomView()
 }

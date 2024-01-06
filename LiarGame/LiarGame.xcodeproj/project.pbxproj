@@ -26,6 +26,7 @@
 		B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = B7CD8D332B49311E00E1DB20 /* Socket */; };
 		B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */; };
 		B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */; };
+		B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D3A2B497E1500E1DB20 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomViewModel.swift; sourceTree = "<group>"; };
 		B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 		B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D3A2B497E1500E1DB20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		B7B372902B41CA5F00D81D07 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B7CD8D3E2B49835100E1DB20 /* Model */,
 				B7B372912B41CABC00D81D07 /* Navigation */,
 			);
 			path = Core;
@@ -264,6 +267,14 @@
 				B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */,
 			);
 			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		B7CD8D3E2B49835100E1DB20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D3A2B497E1500E1DB20 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +421,7 @@
 				B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */,
 				B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */,
 				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
+				B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */,
 				B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */,
 				B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */,
 				B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */,

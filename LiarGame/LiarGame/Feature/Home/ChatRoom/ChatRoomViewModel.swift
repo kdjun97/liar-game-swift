@@ -10,5 +10,14 @@ import Combine
 import Socket
 
 class ChatRoomViewModel: ObservableObject {
+    var isServer: Bool
+    @Published var user: User
     
+    init(
+        isServer: Bool = false,
+        user: User
+    ) {
+        self.isServer = isServer
+        self.user = user
+    }
 }
