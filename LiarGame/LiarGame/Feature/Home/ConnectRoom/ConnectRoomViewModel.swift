@@ -66,7 +66,7 @@ class ConnectRoomViewModel: ObservableObject {
         isShowAlert = isShow
     }
     
-    func validateNickName() -> (Bool) {
+    func validateNickName() -> Bool {
         if (nickname.isEmpty) {
             return false
         } else {

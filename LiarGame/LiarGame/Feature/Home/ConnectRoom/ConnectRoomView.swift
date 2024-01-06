@@ -99,7 +99,11 @@ struct ConnectRoomView: View {
                 }
                 Spacer()
             }
-        }.alert(isPresented: $connectRoomViewModel.isShowAlert) {
+        }
+        .onAppear{
+            connectRoomViewModel.loadIPButtonTapped()
+        }
+        .alert(isPresented: $connectRoomViewModel.isShowAlert) {
             alert ?? unKnownErrorAlert
         }
     }
