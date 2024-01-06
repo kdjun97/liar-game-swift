@@ -67,20 +67,28 @@ struct ConnectRoomView: View {
                         buttonAction: {
                             let isValidNickname = connectRoomViewModel.validateNickName()
                             if (isValidNickname) {
-                                let (state, clientSocket) = connectRoomViewModel.connectRoom()
-                                if let clientSocket = clientSocket {
-                                    liarPath.paths.append(
-                                        .chatRoom(
-                                            user: User(
-                                                socket: clientSocket,
-                                                serverIP: connectRoomViewModel.serverIPAddress,
-                                                myIP: connectRoomViewModel.myIPAddress,
-                                                nickname: connectRoomViewModel.nickname
+                                let isLoadIPButtonTapped = connectRoomViewModel.checkLoadIP()
+                                if (isLoadIPButtonTapped) {
+                                    let (state, clientSocket) = connectRoomViewModel.connectRoom()
+                                    if let clientSocket = clientSocket {
+                                        liarPath.paths.append(
+                                            .chatRoom(
+                                                user: User(
+                                                    socket: clientSocket,
+                                                    serverIP: connectRoomViewModel.serverIPAddress,
+                                                    myIP: connectRoomViewModel.myIPAddress,
+                                                    nickname: connectRoomViewModel.nickname
+                                                )
                                             )
                                         )
-                                    )
+                                    } else {
+                                        alert = getAlert(state: state)
+                                        if let _ = alert {
+                                            connectRoomViewModel.setAlert(isShow: true)
+                                        }
+                                    }
                                 } else {
-                                    alert = getAlert(state: state)
+                                    alert = getAlert(state: .needLoadIP)
                                     if let _ = alert {
                                         connectRoomViewModel.setAlert(isShow: true)
                                     }
@@ -108,6 +116,7 @@ struct ConnectRoomView: View {
         switch (state) {
         case .success: return nil
         case .nickNameError: return nickNameErrorAlert
+        case .needLoadIP: return needLoadIPErrorAlert
         case .connectFail: return connectServerErrorAlert
         case .unKnown: return unKnownErrorAlert
         }
@@ -116,6 +125,12 @@ struct ConnectRoomView: View {
     private let nickNameErrorAlert = Alert(
         title: Text("Error"),
         message: Text("Empty nickname!"),
+        dismissButton: .default(Text("Ok"))
+    )
+    
+    private let needLoadIPErrorAlert = Alert(
+        title: Text("Error"),
+        message: Text("Please Load IP Button Tap"),
         dismissButton: .default(Text("Ok"))
     )
     

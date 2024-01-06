@@ -66,8 +66,17 @@ class ConnectRoomViewModel: ObservableObject {
         isShowAlert = isShow
     }
     
-    func validateNickName() -> (Bool) {
+    func validateNickName() -> Bool {
         if (nickname.isEmpty) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func checkLoadIP() -> Bool {
+        // TODO : getIP error면 어떻게?
+        if (myIPAddress.isEmpty || myIPAddress == "-") {
             return false
         } else {
             return true
@@ -92,6 +101,7 @@ class ConnectRoomViewModel: ObservableObject {
 enum ConnectRoomState {
     case success
     case nickNameError
+    case needLoadIP
     case connectFail
     case unKnown
 }
