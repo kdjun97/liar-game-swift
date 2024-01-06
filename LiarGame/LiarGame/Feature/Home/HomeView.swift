@@ -33,11 +33,7 @@ struct HomeView: View {
                             ChatRoomView(
                                 chatRoomViewModel: ChatRoomViewModel(
                                     isServer: isServer,
-                                    user: User(
-                                        socket: user.socket,
-                                        serverIP: user.serverIP,
-                                        myIP : user.myIP
-                                    )
+                                    user: user
                                 )
                             )
                                 .navigationBarBackButtonHidden(true)

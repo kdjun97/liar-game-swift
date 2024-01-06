@@ -69,13 +69,13 @@ struct ConnectRoomView: View {
                             if (isValidNickname) {
                                 let (state, clientSocket) = connectRoomViewModel.connectRoom()
                                 if let clientSocket = clientSocket {
-                                    // TODO : Navigate To Chatting Room With clientSocket
                                     liarPath.paths.append(
                                         .chatRoom(
                                             user: User(
                                                 socket: clientSocket,
                                                 serverIP: connectRoomViewModel.serverIPAddress,
-                                                myIP: connectRoomViewModel.myIPAddress
+                                                myIP: connectRoomViewModel.myIPAddress,
+                                                nickname: connectRoomViewModel.nickname
                                             )
                                         )
                                     )

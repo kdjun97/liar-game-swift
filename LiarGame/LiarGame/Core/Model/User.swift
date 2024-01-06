@@ -12,4 +12,5 @@ struct User: Hashable {
     let socket: Socket
     let serverIP: String
     let myIP: String
+    let nickname: String
 }
