@@ -330,6 +330,9 @@
 				Base,
 			);
 			mainGroup = B7B3724A2B41B17F00D81D07;
+			packageReferences = (
+				B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = B7B372542B41B17F00D81D07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -726,6 +729,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = B7B3724B2B41B17F00D81D07 /* Project object */;
 }
