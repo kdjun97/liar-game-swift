@@ -23,6 +23,7 @@
 		B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */; };
 		B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */; };
 		B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */; };
+		B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = B7CD8D332B49311E00E1DB20 /* Socket */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +98,7 @@
 				B7B372662B41B18000D81D07 /* LiarGameTests */,
 				B7B372702B41B18000D81D07 /* LiarGameUITests */,
 				B7B372542B41B17F00D81D07 /* Products */,
+				B7CD8D322B49311E00E1DB20 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -242,6 +245,13 @@
 			path = TextField;
 			sourceTree = "<group>";
 		};
+		B7CD8D322B49311E00E1DB20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +268,9 @@
 			dependencies = (
 			);
 			name = LiarGame;
+			packageProductDependencies = (
+				B7CD8D332B49311E00E1DB20 /* Socket */,
+			);
 			productName = LiarGame;
 			productReference = B7B372532B41B17F00D81D07 /* LiarGame.app */;
 			productType = "com.apple.product-type.application";
@@ -740,6 +753,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7CD8D332B49311E00E1DB20 /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B7B3724B2B41B17F00D81D07 /* Project object */;
 }
