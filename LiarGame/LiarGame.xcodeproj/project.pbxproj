@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B75BE3BA2B4A8AF10072D29F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75BE3B92B4A8AF10072D29F /* Message.swift */; };
 		B7B372572B41B17F00D81D07 /* RootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372562B41B17F00D81D07 /* RootApp.swift */; };
 		B7B372592B41B17F00D81D07 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372582B41B17F00D81D07 /* HomeView.swift */; };
 		B7B3725B2B41B18000D81D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B3725A2B41B18000D81D07 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B75BE3B92B4A8AF10072D29F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		B7B372532B41B17F00D81D07 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B372562B41B17F00D81D07 /* RootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootApp.swift; sourceTree = "<group>"; };
 		B7B372582B41B17F00D81D07 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B75BE3B82B4A8AEA0072D29F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B75BE3B92B4A8AF10072D29F /* Message.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B7B3724A2B41B17F00D81D07 = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +273,7 @@
 		B7CD8D352B49613000E1DB20 /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				B75BE3B82B4A8AEA0072D29F /* Model */,
 				B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */,
 				B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */,
 			);
@@ -419,6 +430,7 @@
 				B7B3728F2B41C9FC00D81D07 /* HomeViewModel.swift in Sources */,
 				B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */,
 				B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */,
+				B75BE3BA2B4A8AF10072D29F /* Message.swift in Sources */,
 				B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */,
 				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
 				B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */,
