@@ -24,6 +24,9 @@ struct ChatRoomView: View {
                 ChattingTextField()
             }
         }
+        .onAppear {
+            UIApplication.shared.hideKeyboard()
+        }
         .alert(isPresented: $chatRoomViewModel.isShowAlert) {
             Alert(
                 title: Text("Error"),
@@ -153,6 +156,22 @@ private struct ChattingTextField: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(.customPink)
+    }
+}
+
+extension UIApplication {
+    func hideKeyboard() {
+        guard let window = windows.first else { return }
+        let tapRecognizer = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
+        tapRecognizer.cancelsTouchesInView = false
+        tapRecognizer.delegate = self
+        window.addGestureRecognizer(tapRecognizer)
+    }
+}
+
+extension UIApplication: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }
 
