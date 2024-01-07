@@ -18,10 +18,13 @@ struct ChatRoomView: View {
                 GameStatusBar(chatRoomViewModel: chatRoomViewModel)
                 Divider()
                     .frame(height: 1)
-                Text("Now, In the Chat Room")
-                Spacer()
+                ScrollView {
+                    Text("Now, In the Chat Room")
+                }
+                ChattingTextField()
             }
-        }.alert(isPresented: $chatRoomViewModel.isShowAlert) {
+        }
+        .alert(isPresented: $chatRoomViewModel.isShowAlert) {
             Alert(
                 title: Text("Error"),
                 message: Text(chatRoomViewModel.alertMessage),
@@ -123,5 +126,43 @@ private struct SystemButton: View {
         .padding(.horizontal, 8)
         .background(.customPink)
         .cornerRadius(12)
+    }
+}
+
+private struct ChattingTextField: View {
+    @State private var text: String = ""
+    
+    fileprivate var body: some View {
+        HStack(spacing: 0) {
+            TextField(
+                "",
+                text: $text
+            )
+            .font(.system(size: 18))
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(.customWhite)
+            .cornerRadius(12)
+            Spacer()
+            Button {
+                // TODO : Implement send message logic
+            } label: {
+                Image("send").padding(6)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.customPink)
+    }
+}
+
+#Preview {
+    VStack(spacing: 0) {
+        Divider()
+            .frame(height: 1)
+        ScrollView {
+            Text("Now, In the Chat Room")
+        }
+        ChattingTextField()
     }
 }
