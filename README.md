@@ -8,6 +8,15 @@ Description: 돌아온 라이어게임!
 - Minimum Target Version: Greater than or equal iOS 16.0  
 - Xcode Version : **15.0.1**  
 
+`Package Dependencies`  
+
+- [BlueSocket 2.0.4](https://github.com/Kitura/BlueSocket)  
+
 `Skill Stack`  
 
 - SwiftUI  
+
+## TODO  
+- IP Seting ✅
+- Game Rule
+- IP Validation

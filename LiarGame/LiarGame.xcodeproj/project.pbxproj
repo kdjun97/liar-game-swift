@@ -7,13 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7B372572B41B17F00D81D07 /* LiarGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372562B41B17F00D81D07 /* LiarGameApp.swift */; };
-		B7B372592B41B17F00D81D07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372582B41B17F00D81D07 /* ContentView.swift */; };
+		B7B372572B41B17F00D81D07 /* RootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372562B41B17F00D81D07 /* RootApp.swift */; };
+		B7B372592B41B17F00D81D07 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372582B41B17F00D81D07 /* HomeView.swift */; };
 		B7B3725B2B41B18000D81D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B3725A2B41B18000D81D07 /* Assets.xcassets */; };
 		B7B3725E2B41B18000D81D07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B3725D2B41B18000D81D07 /* Preview Assets.xcassets */; };
 		B7B372682B41B18000D81D07 /* LiarGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372672B41B18000D81D07 /* LiarGameTests.swift */; };
 		B7B372722B41B18000D81D07 /* LiarGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372712B41B18000D81D07 /* LiarGameUITests.swift */; };
 		B7B372742B41B18000D81D07 /* LiarGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372732B41B18000D81D07 /* LiarGameUITestsLaunchTests.swift */; };
+		B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372882B41C11200D81D07 /* CornerButton.swift */; };
+		B7B3728F2B41C9FC00D81D07 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3728E2B41C9FC00D81D07 /* HomeViewModel.swift */; };
+		B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372922B41CAC700D81D07 /* LiarPath.swift */; };
+		B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */; };
+		B7B372992B41CCA300D81D07 /* ConnectRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */; };
+		B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */; };
+		B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */; };
+		B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */; };
+		B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */; };
+		B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = B7CD8D332B49311E00E1DB20 /* Socket */; };
+		B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */; };
+		B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */; };
+		B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CD8D3A2B497E1500E1DB20 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +48,8 @@
 
 /* Begin PBXFileReference section */
 		B7B372532B41B17F00D81D07 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7B372562B41B17F00D81D07 /* LiarGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameApp.swift; sourceTree = "<group>"; };
-		B7B372582B41B17F00D81D07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B7B372562B41B17F00D81D07 /* RootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootApp.swift; sourceTree = "<group>"; };
+		B7B372582B41B17F00D81D07 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B7B3725A2B41B18000D81D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7B3725D2B41B18000D81D07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7B372632B41B18000D81D07 /* LiarGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiarGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +57,18 @@
 		B7B3726D2B41B18000D81D07 /* LiarGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiarGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B372712B41B18000D81D07 /* LiarGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameUITests.swift; sourceTree = "<group>"; };
 		B7B372732B41B18000D81D07 /* LiarGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B7B372882B41C11200D81D07 /* CornerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerButton.swift; sourceTree = "<group>"; };
+		B7B3728E2B41C9FC00D81D07 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B7B372922B41CAC700D81D07 /* LiarPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarPath.swift; sourceTree = "<group>"; };
+		B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomView.swift; sourceTree = "<group>"; };
+		B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomView.swift; sourceTree = "<group>"; };
+		B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaivgationBar.swift; sourceTree = "<group>"; };
+		B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSettingTextField.swift; sourceTree = "<group>"; };
+		B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		B7CD8D3A2B497E1500E1DB20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7CD8D342B49311E00E1DB20 /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +104,7 @@
 				B7B372662B41B18000D81D07 /* LiarGameTests */,
 				B7B372702B41B18000D81D07 /* LiarGameUITests */,
 				B7B372542B41B17F00D81D07 /* Products */,
+				B7CD8D322B49311E00E1DB20 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +121,10 @@
 		B7B372552B41B17F00D81D07 /* LiarGame */ = {
 			isa = PBXGroup;
 			children = (
-				B7B372562B41B17F00D81D07 /* LiarGameApp.swift */,
-				B7B372582B41B17F00D81D07 /* ContentView.swift */,
+				B7B372902B41CA5F00D81D07 /* Core */,
+				B7B372862B41C0CC00D81D07 /* Component */,
+				B7B372842B41BFBE00D81D07 /* Feature */,
+				B7B372832B41BFB000D81D07 /* App */,
 				B7B3725A2B41B18000D81D07 /* Assets.xcassets */,
 				B7B3725C2B41B18000D81D07 /* Preview Content */,
 			);
@@ -127,6 +156,127 @@
 			path = LiarGameUITests;
 			sourceTree = "<group>";
 		};
+		B7B372832B41BFB000D81D07 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372562B41B17F00D81D07 /* RootApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B7B372842B41BFBE00D81D07 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372852B41C02300D81D07 /* Home */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		B7B372852B41C02300D81D07 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D352B49613000E1DB20 /* ChatRoom */,
+				B7B372952B41CC9100D81D07 /* ConnectRoom */,
+				B7B372942B41CC8800D81D07 /* CreateRoom */,
+				B7B372582B41B17F00D81D07 /* HomeView.swift */,
+				B7B3728E2B41C9FC00D81D07 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B7B372862B41C0CC00D81D07 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D2A2B48435C00E1DB20 /* TextField */,
+				B7B3729A2B41CE1200D81D07 /* NavigationBar */,
+				B7B372872B41C0E200D81D07 /* Button */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		B7B372872B41C0E200D81D07 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372882B41C11200D81D07 /* CornerButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		B7B372902B41CA5F00D81D07 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D3E2B49835100E1DB20 /* Model */,
+				B7B372912B41CABC00D81D07 /* Navigation */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B7B372912B41CABC00D81D07 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372922B41CAC700D81D07 /* LiarPath.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B7B372942B41CC8800D81D07 /* CreateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372962B41CC9C00D81D07 /* CreateRoomView.swift */,
+				B7CD8D2D2B4843ED00E1DB20 /* CreateRoomViewModel.swift */,
+			);
+			path = CreateRoom;
+			sourceTree = "<group>";
+		};
+		B7B372952B41CC9100D81D07 /* ConnectRoom */ = {
+			isa = PBXGroup;
+			children = (
+				B7B372982B41CCA300D81D07 /* ConnectRoomView.swift */,
+				B7CD8D2F2B484D2700E1DB20 /* ConnectRoomViewModel.swift */,
+			);
+			path = ConnectRoom;
+			sourceTree = "<group>";
+		};
+		B7B3729A2B41CE1200D81D07 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				B7B3729B2B41CE3B00D81D07 /* CustomNaivgationBar.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		B7CD8D2A2B48435C00E1DB20 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D2B2B48437200E1DB20 /* InfoSettingTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		B7CD8D322B49311E00E1DB20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7CD8D352B49613000E1DB20 /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D362B49617900E1DB20 /* ChatRoomView.swift */,
+				B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */,
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		B7CD8D3E2B49835100E1DB20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7CD8D3A2B497E1500E1DB20 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +293,9 @@
 			dependencies = (
 			);
 			name = LiarGame;
+			packageProductDependencies = (
+				B7CD8D332B49311E00E1DB20 /* Socket */,
+			);
 			productName = LiarGame;
 			productReference = B7B372532B41B17F00D81D07 /* LiarGame.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +368,9 @@
 				Base,
 			);
 			mainGroup = B7B3724A2B41B17F00D81D07;
+			packageReferences = (
+				B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = B7B372542B41B17F00D81D07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +413,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7B372592B41B17F00D81D07 /* ContentView.swift in Sources */,
-				B7B372572B41B17F00D81D07 /* LiarGameApp.swift in Sources */,
+				B7B372992B41CCA300D81D07 /* ConnectRoomView.swift in Sources */,
+				B7B372592B41B17F00D81D07 /* HomeView.swift in Sources */,
+				B7B372572B41B17F00D81D07 /* RootApp.swift in Sources */,
+				B7B3728F2B41C9FC00D81D07 /* HomeViewModel.swift in Sources */,
+				B7B3729C2B41CE3B00D81D07 /* CustomNaivgationBar.swift in Sources */,
+				B7CD8D392B49617F00E1DB20 /* ChatRoomViewModel.swift in Sources */,
+				B7CD8D372B49617900E1DB20 /* ChatRoomView.swift in Sources */,
+				B7B372972B41CC9C00D81D07 /* CreateRoomView.swift in Sources */,
+				B7CD8D3B2B497E1500E1DB20 /* User.swift in Sources */,
+				B7B372932B41CAC700D81D07 /* LiarPath.swift in Sources */,
+				B7CD8D302B484D2700E1DB20 /* ConnectRoomViewModel.swift in Sources */,
+				B7B372892B41C11200D81D07 /* CornerButton.swift in Sources */,
+				B7CD8D2C2B48437200E1DB20 /* InfoSettingTextField.swift in Sources */,
+				B7CD8D2E2B4843ED00E1DB20 /* CreateRoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,10 +587,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LiarGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Z8W92S6YL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7Z8W92S6YL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -437,9 +607,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Dongjun.LiarGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = LiarGame;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,10 +623,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LiarGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Z8W92S6YL;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7Z8W92S6YL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -466,9 +643,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Dongjun.LiarGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = LiarGame;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -588,6 +770,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/BlueSocket";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B7CD8D332B49311E00E1DB20 /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7CD8D312B49261700E1DB20 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B7B3724B2B41B17F00D81D07 /* Project object */;
 }
