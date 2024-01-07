@@ -20,8 +20,11 @@ struct ChatRoomView: View {
                     .frame(height: 1)
                 ScrollView {
                     Text("Now, In the Chat Room")
+                    ForEach(chatRoomViewModel.messageList, id:\.self) { message in
+                        Text(message.message)
+                    }
                 }
-                ChattingTextField()
+                ChattingTextField(chatRoomViewModel: chatRoomViewModel)
             }
         }
         .onAppear {
@@ -50,7 +53,7 @@ private struct GameStatusBar: View {
                     ipAddress: chatRoomViewModel.user.serverIP
                 ).padding(.bottom, 4)
                 IPAddressInfoView(
-                    title: "나",
+                    title: "본인",
                     ipAddress: chatRoomViewModel.user.myIP
                 )
             }
@@ -58,7 +61,7 @@ private struct GameStatusBar: View {
             HStack(spacing: 0) {
                 Spacer()
                 SystemButton(
-                    title: "게임시작",
+                    title: chatRoomViewModel.isServer ? "게임시작" : "접속하기",
                     buttonAction: {
                         chatRoomViewModel.gameStartButtonTapped()
                     }
@@ -134,6 +137,11 @@ private struct SystemButton: View {
 
 private struct ChattingTextField: View {
     @State private var text: String = ""
+    @ObservedObject private var chatRoomViewModel: ChatRoomViewModel
+    
+    init(chatRoomViewModel: ChatRoomViewModel) {
+        self.chatRoomViewModel = chatRoomViewModel
+    }
     
     fileprivate var body: some View {
         HStack(spacing: 0) {
@@ -148,7 +156,11 @@ private struct ChattingTextField: View {
             .cornerRadius(12)
             Spacer()
             Button {
-                // TODO : Implement send message logic
+                if (chatRoomViewModel.isServer) {
+                    chatRoomViewModel.sendMessageToClient(text)
+                } else {
+                    chatRoomViewModel.sendMessageToServer(text)
+                }
             } label: {
                 Image("send").padding(6)
             }
@@ -172,16 +184,5 @@ extension UIApplication {
 extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
-    }
-}
-
-#Preview {
-    VStack(spacing: 0) {
-        Divider()
-            .frame(height: 1)
-        ScrollView {
-            Text("Now, In the Chat Room")
-        }
-        ChattingTextField()
     }
 }
