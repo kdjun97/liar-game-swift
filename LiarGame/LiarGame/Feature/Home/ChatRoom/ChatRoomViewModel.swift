@@ -177,7 +177,9 @@ class ChatRoomViewModel: ObservableObject {
         serverCancellable = nil
         if let socket = user.socket {
             socket.close()
-            user.socket = nil
+            DispatchQueue.main.async {
+                self.user.socket = nil
+            }
         }
 
     }
@@ -190,7 +192,9 @@ class ChatRoomViewModel: ObservableObject {
                 // QUIT 못보냈을 경우
             }
             socket.close()
-            user.socket = nil
+            DispatchQueue.main.async {
+                self.user.socket = nil
+            }
         }
         setIsRepeat(value: false)
         clientCancellable?.cancel()
