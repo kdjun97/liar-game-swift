@@ -34,8 +34,9 @@ class ChatRoomViewModel: ObservableObject {
     
     func gameExitButtonTapped() -> Bool {
         if (isServer) {
-            // 서버라면, 클라이언트 리스트 정리하고 close
-            return false
+            // 서버라면, 클라이언트 리스트 정리하고 close, 일단은 지금은 바로 close하는 걸로 구현
+            user.socket.close()
+            return true
         } else {
             user.socket.close()
             return true
