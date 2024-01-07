@@ -9,7 +9,7 @@ import Foundation
 import Socket
 
 struct User: Hashable {
-    let socket: Socket
+    var socket: Socket?
     let serverIP: String
     let myIP: String
     let nickname: String
