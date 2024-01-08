@@ -22,6 +22,7 @@ struct ConnectRoomView: View {
                     }
                 )
                 
+                // Rename image
                 Image("logo2")
                     .resizable()
                     .scaledToFit()
@@ -67,12 +68,12 @@ struct ConnectRoomView: View {
                         buttonAction: {
                             let isValidNickname = connectRoomViewModel.validateNickName()
                             if (isValidNickname) {
-                                let (state, clientSocket) = connectRoomViewModel.connectRoom()
-                                if let clientSocket = clientSocket {
+                                let isValidServerIP = connectRoomViewModel.validateServerIP()
+                                if (isValidServerIP) {
                                     liarPath.paths.append(
                                         .chatRoom(
+                                            isServer: false,
                                             user: User(
-                                                socket: clientSocket,
                                                 serverIP: connectRoomViewModel.serverIPAddress,
                                                 myIP: connectRoomViewModel.myIPAddress,
                                                 nickname: connectRoomViewModel.nickname
@@ -80,16 +81,12 @@ struct ConnectRoomView: View {
                                         )
                                     )
                                 } else {
-                                    alert = getAlert(state: state)
-                                    if let _ = alert {
-                                        connectRoomViewModel.setAlert(isShow: true)
-                                    }
-                                }
-                            } else {
-                                alert = getAlert(state: .nickNameError)
-                                if let _ = alert {
+                                    alert = invalidServerIPAlert
                                     connectRoomViewModel.setAlert(isShow: true)
                                 }
+                            } else {
+                                alert = invalidNicknameAlert
+                                connectRoomViewModel.setAlert(isShow: true)
                             }
                         },
                         cornerRadius: 4.0,
@@ -108,31 +105,22 @@ struct ConnectRoomView: View {
         }
     }
     
-    private func getAlert(state: ConnectRoomState) -> Alert? {
-        switch (state) {
-        case .success: return nil
-        case .nickNameError: return nickNameErrorAlert
-        case .connectFail: return connectServerErrorAlert
-        case .unKnown: return unKnownErrorAlert
-        }
-    }
-    
-    private let nickNameErrorAlert = Alert(
+    private let invalidNicknameAlert = Alert(
         title: Text("Error"),
         message: Text("Empty nickname!"),
-        dismissButton: .default(Text("Ok"))
+        dismissButton: .destructive(Text("Ok"))
     )
     
-    private let connectServerErrorAlert = Alert(
+    private let invalidServerIPAlert = Alert(
         title: Text("Error"),
-        message: Text("Connect Server Failed!"),
-        dismissButton: .default(Text("Ok"))
+        message: Text("Please input Server IP"),
+        dismissButton: .destructive(Text("Ok"))
     )
     
     private let unKnownErrorAlert = Alert(
         title: Text("UnKnown Error"),
         message: Text("UnExpected Error!"),
-        dismissButton: .default(Text("Ok"))
+        dismissButton: .destructive(Text("Ok"))
     )
 }
 

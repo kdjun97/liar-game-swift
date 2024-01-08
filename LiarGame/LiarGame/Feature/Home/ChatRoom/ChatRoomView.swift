@@ -156,11 +156,7 @@ private struct ChattingTextField: View {
             .cornerRadius(12)
             Spacer()
             Button {
-                if (chatRoomViewModel.isServer) {
-                    chatRoomViewModel.sendMessageToClient(text)
-                } else {
-                    chatRoomViewModel.sendMessageToServer(text)
-                }
+                chatRoomViewModel.sendMessage(text)
             } label: {
                 Image("send").padding(6)
             }

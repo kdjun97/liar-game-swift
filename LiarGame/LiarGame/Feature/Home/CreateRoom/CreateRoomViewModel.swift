@@ -6,15 +6,11 @@
 //
 
 import Foundation
-import Socket
 
 class CreateRoomViewModel: ObservableObject {
     @Published var nickname: String = ""
     @Published var myIPAddress: String = "-"
-    @Published var isServerCreate: Bool = false
     @Published var isShowAlert: Bool = false
-    private var serverSocket: Socket?
-    private let port: Int = 12345
     
     func setNickName(newValue: String) {
         nickname = newValue
@@ -62,32 +58,11 @@ class CreateRoomViewModel: ObservableObject {
         isShowAlert = isShow
     }
     
-    func validateNickName() -> (Bool) {
+    func validateNickName() -> Bool {
         if (nickname.isEmpty) {
             return false
         } else {
             return true
         }
     }
-    
-    func createRoom() -> (CreateRoomState, Socket?) {
-        do {
-            serverSocket = try Socket.create(family: .inet)
-            guard let server = serverSocket else {
-                return (.createFail, nil)
-            }
-            
-            try server.listen(on: port)
-            return (.success ,server)
-        } catch {
-            return (.unKnown, nil)
-        }
-    }
-}
-
-enum CreateRoomState {
-    case success
-    case nickNameError
-    case createFail
-    case unKnown
 }
