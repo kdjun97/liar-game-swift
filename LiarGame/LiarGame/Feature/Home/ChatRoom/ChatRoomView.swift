@@ -21,7 +21,7 @@ struct ChatRoomView: View {
                 ScrollView {
                     Text("Now, In the Chat Room")
                     ForEach(chatRoomViewModel.messageList, id:\.self) { message in
-                        Text(message.message)
+                        Text("[\(message.nickname)]:\(message.message)")
                     }
                 }
                 ChattingTextField(chatRoomViewModel: chatRoomViewModel)
@@ -156,7 +156,10 @@ private struct ChattingTextField: View {
             .cornerRadius(12)
             Spacer()
             Button {
-                chatRoomViewModel.sendMessage(text)
+                let isSendMessage = chatRoomViewModel.sendMessage(text)
+                if (isSendMessage) {
+                    text = ""
+                }
             } label: {
                 Image("send").padding(6)
             }

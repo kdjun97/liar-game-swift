@@ -95,14 +95,16 @@ class ChatRoomViewModel: ObservableObject {
                                             print("exit 받음")
                                             self.stopServer()
                                         } else {
-                                            DispatchQueue.main.async {
-                                                self.messageList.append(
-                                                    Message(
-                                                        nickname: "to parsing",
-                                                        message: data,
-                                                        ipAddress: "to parsing"
+                                            if let splitedMessage = self.splitStringMessage(message: data) {
+                                                DispatchQueue.main.async {
+                                                    self.messageList.append(
+                                                        Message(
+                                                            nickname: splitedMessage.nickname,
+                                                            message: splitedMessage.message,
+                                                            ipAddress: splitedMessage.ipAddress
+                                                        )
                                                     )
-                                                )
+                                                }
                                             }
                                         }
                                     })
@@ -163,14 +165,16 @@ class ChatRoomViewModel: ObservableObject {
                                     print("exit 받음")
                                     self.stopClient()
                                 } else {
-                                    DispatchQueue.main.async {
-                                        self.messageList.append(
-                                            Message(
-                                                nickname: "to parsing",
-                                                message: data,
-                                                ipAddress: "to parsing"
+                                    if let splitedMessage = self.splitStringMessage(message: data) {
+                                        DispatchQueue.main.async {
+                                            self.messageList.append(
+                                                Message(
+                                                    nickname: splitedMessage.nickname,
+                                                    message: splitedMessage.message,
+                                                    ipAddress: splitedMessage.ipAddress
+                                                )
                                             )
-                                        )
+                                        }
                                     }
                                 }
                             })
@@ -235,35 +239,49 @@ class ChatRoomViewModel: ObservableObject {
         clientCancellable = nil
     }
     
-    func sendMessage(_ message: String) {
+    func sendMessage(_ message: String) -> Bool {
         if (isServer) {
-            sendMessageToClient(message)
+            return sendMessageToClient(message)
         } else {
-            sendMessageToServer(message)
+            return sendMessageToServer(message)
         }
     }
     
-    func sendMessageToServer(_ message: String) {
+    func sendMessageToServer(_ message: String) -> Bool {
         do {
             if let clientSocket = clientSocket {
+                let message = "\(user.nickname)\\\(message)\\\(user.myIP)"
                 try clientSocket.write(from: message)
+                if let splitedMessage = splitStringMessage(message: message) {
+                    messageList.append(splitedMessage)
+                }
+                return true
             } else {
                 setAlert(title: "Error", message: "연결된 서버 혹은 클라이언트 소켓이 없습니다.", active: true)
+                return false
             }
         } catch {
             setAlert(title: "Error", message: "[Client -> Server] send message failed", active: true)
+            return false
         }
     }
     
-    func sendMessageToClient(_ message: String) {
+    func sendMessageToClient(_ message: String) -> Bool {
         do {
             if let linkedClientSocket = linkedClientSocket {
+                let message = "\(user.nickname)\\\(message)\\\(user.myIP)"
                 try linkedClientSocket.write(from: message)
+                if let splitedMessage = splitStringMessage(message: message) {
+                    messageList.append(splitedMessage)
+                }
+                return true
             } else {
                 setAlert(title: "Error", message: "연결된 클라이언트가 없습니다", active: true)
+                return false
             }
         } catch {
             setAlert(title: "Error", message: "[Server -> Client] send message failed", active: true)
+            return false
         }
     }
     
@@ -271,5 +289,18 @@ class ChatRoomViewModel: ObservableObject {
         alertTitle = title
         alertMessage = message
         isShowAlert = active
+    }
+    
+    func splitStringMessage(message: String) -> Message? {
+        let splitList = message.split(separator: "\\")
+        if (splitList.count == 3) {
+            return Message(
+                nickname: String(splitList[0]),
+                message: String(splitList[1]),
+                ipAddress: String(splitList[2])
+            )
+        } else {
+            return nil
+        }
     }
 }
