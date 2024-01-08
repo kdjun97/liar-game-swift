@@ -6,15 +6,12 @@
 //
 
 import Foundation
-import Socket
 
 class ConnectRoomViewModel: ObservableObject {
     @Published var nickname: String = ""
     @Published var myIPAddress: String = "-"
     @Published var serverIPAddress: String = ""
     @Published var isShowAlert: Bool = false
-    var clientSocket: Socket? // 서버와 연결관계를 갖는 소켓
-    let port: Int = 12345
     
     func setNickName(newValue: String) {
         nickname = newValue
@@ -74,24 +71,11 @@ class ConnectRoomViewModel: ObservableObject {
         }
     }
     
-    func connectRoom() -> (ConnectRoomState, Socket?) {
-        do {
-            clientSocket = try Socket.create(family: .inet)
-            guard let clinetSocket = clientSocket else {
-                return (.connectFail, nil)
-            }
-            
-            try clinetSocket.connect(to: serverIPAddress, port: Int32(port))
-            return (.success, clientSocket)
-        } catch {
-            return (.unKnown, nil)
+    func validateServerIP() -> Bool {
+        if (serverIPAddress.isEmpty) {
+            return false
+        } else {
+            return true
         }
     }
-}
-
-enum ConnectRoomState {
-    case success
-    case nickNameError
-    case connectFail
-    case unKnown
 }

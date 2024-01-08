@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import Socket
 
 struct User: Hashable {
-    var socket: Socket?
     let serverIP: String
     let myIP: String
     let nickname: String

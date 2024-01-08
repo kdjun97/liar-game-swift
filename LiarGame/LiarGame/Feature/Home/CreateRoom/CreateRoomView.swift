@@ -56,30 +56,20 @@ struct CreateRoomView: View {
                         buttonAction: {
                             let isValidNickname = createRoomViewModel.validateNickName()
                             if (isValidNickname) {
-                                let (state, serverSocket) = createRoomViewModel.createRoom()
-                                if let serverSocket = serverSocket {
-                                    liarPath.paths.append(
-                                        .chatRoom(
-                                            isServer: true,
-                                            user: User(
-                                                socket: serverSocket,
-                                                serverIP: createRoomViewModel.myIPAddress,
-                                                myIP: createRoomViewModel.myIPAddress,
-                                                nickname: createRoomViewModel.nickname
-                                            )
+                                // TODO : Add IP Validation
+                                liarPath.paths.append(
+                                    .chatRoom(
+                                        isServer: true,
+                                        user: User(
+                                            serverIP: createRoomViewModel.myIPAddress,
+                                            myIP: createRoomViewModel.myIPAddress,
+                                            nickname: createRoomViewModel.nickname
                                         )
                                     )
-                                } else {
-                                    alert = getAlert(state: state)
-                                    if let _ = alert {
-                                        createRoomViewModel.setAlert(isShow: true)
-                                    }
-                                }
+                                )
                             } else {
-                                alert = getAlert(state: .nickNameError)
-                                if let _ = alert {
-                                    createRoomViewModel.setAlert(isShow: true)
-                                }
+                                alert = invalidNicknameAlert
+                                createRoomViewModel.setAlert(isShow: true)
                             }
                         },
                         cornerRadius: 4.0,
@@ -98,32 +88,17 @@ struct CreateRoomView: View {
         }
     }
     
-    private let nickNameErrorAlert = Alert(
+    private let invalidNicknameAlert = Alert(
         title: Text("Error"),
         message: Text("Empty nickname!"),
-        dismissButton: .default(Text("Ok"))
-    )
-    
-    private let createServerErrorAlert = Alert(
-        title: Text("Socket Create Error"),
-        message: Text("Server Socket Create Failed!"),
-        dismissButton: .default(Text("Ok"))
+        dismissButton: .destructive(Text("Ok"))
     )
     
     private let unKnownErrorAlert = Alert(
         title: Text("UnKnown Error"),
         message: Text("UnExpected Error!"),
-        dismissButton: .default(Text("Ok"))
+        dismissButton: .destructive(Text("Ok"))
     )
-    
-    private func getAlert(state: CreateRoomState) -> Alert? {
-        switch (state) {
-        case .success: return nil
-        case .nickNameError: return nickNameErrorAlert
-        case .createFail: return createServerErrorAlert
-        case .unKnown: return unKnownErrorAlert
-        }
-    }
 }
 
 #Preview {
