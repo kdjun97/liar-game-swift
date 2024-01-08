@@ -13,12 +13,18 @@ class ChatRoomViewModel: ObservableObject {
     var isServer: Bool
     @Published var user: User
     @Published var isShowAlert: Bool = false
+    @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
+    
+    private var serverSocket: Socket?
+    private var clientSocket: Socket?
     private var linkedClientSocket: Socket?
+    
     private var serverCancellable: AnyCancellable?
     private var clientCancellable: AnyCancellable?
     private var isRepeat: Bool = false
 
+    private let port: Int = 12345
     private let bufferSize: Int = 512
     @Published var messageList: [Message] = []
     
@@ -35,7 +41,6 @@ class ChatRoomViewModel: ObservableObject {
     }
     
     func gameStartButtonTapped() {
-        setIsRepeat(value: true)
         if (isServer) {
             startServer()
         } else {
@@ -55,7 +60,25 @@ class ChatRoomViewModel: ObservableObject {
     }
     
     func startServer() {
-        if let socket = user.socket {
+        do {
+            serverSocket = try Socket.create(family: .inet)
+            guard let server = serverSocket else {
+                setAlert(title: "Server Error", message: "Server Socket Create Failed!", active: true)
+                return
+            }
+            
+            try server.listen(on: port)
+            
+            iterativeServer()
+        } catch let error {
+            setAlert(title: "Unknown", message: error.localizedDescription, active: true)
+        }
+    }
+    
+    func iterativeServer() {
+        setIsRepeat(value: true)
+
+        if let socket = serverSocket {
             DispatchQueue.global(qos: .background).async {
                 do {
                     repeat {
@@ -86,12 +109,11 @@ class ChatRoomViewModel: ObservableObject {
                         } while self.linkedClientSocket != nil
                     } while self.isRepeat
                 } catch let error {
-                    self.alertMessage = "Start Server Error : [\(error)]"
+                    self.setAlert(title: "Server Error", message: error.localizedDescription, active: true)
                 }
             }
         } else {
-            alertMessage = "서버 소켓이 열려있지 않습니다."
-            isShowAlert = true
+            setAlert(title: "Server Error", message: "서버 소켓이 열려있지 않습니다.", active: true)
         }
     }
     
@@ -112,9 +134,25 @@ class ChatRoomViewModel: ObservableObject {
             }
         }
     }
-    
+        
     func startClient() {
-        if let socket = user.socket {
+        do {
+            clientSocket = try Socket.create(family: .inet)
+            guard let client = clientSocket else {
+                setAlert(title: "Client Error", message: "Client Socket Create Failed!", active: true)
+                return
+            }
+            try client.connect(to: user.serverIP, port: Int32(port))
+            handleClientData()
+        } catch let error {
+            setAlert(title: "Unknown", message: error.localizedDescription, active: true)
+        }
+    }
+    
+    func handleClientData() {
+        setIsRepeat(value: true)
+        
+        if let socket = clientSocket {
             DispatchQueue.global(qos: .background).async {
                 repeat {
                     self.clientCancellable = self.readDataOnClientSocket(client: socket)
@@ -139,8 +177,7 @@ class ChatRoomViewModel: ObservableObject {
                 } while self.isRepeat
             }
         } else {
-            alertMessage = "서버 소켓이 열려있지 않습니다."
-            isShowAlert = true
+            setAlert(title: "Socket Error", message: "서버 혹은 클라이언트 소켓 연결을 확인해주세요", active: true)
         }
     }
     
@@ -166,64 +203,73 @@ class ChatRoomViewModel: ObservableObject {
         if let linkedClientSocket = linkedClientSocket {
             do {
                 try linkedClientSocket.write(from: "EXIT")
+                linkedClientSocket.close()
                 self.linkedClientSocket = nil
             } catch {
                 // QUIT 못보냈을 경우
             }
-            linkedClientSocket.close()
         }
         setIsRepeat(value: false)
+        
         serverCancellable?.cancel()
         serverCancellable = nil
-        if let socket = user.socket {
-            socket.close()
-            DispatchQueue.main.async {
-                self.user.socket = nil
-            }
+        
+        if let server = serverSocket {
+            server.close()
+            self.serverSocket = nil
         }
-
     }
     
     func stopClient() {
-        if let socket = user.socket {
+        if let client = clientSocket {
             do {
-                try socket.write(from: "EXIT")
+                try client.write(from: "EXIT")
             } catch {
                 // QUIT 못보냈을 경우
             }
-            socket.close()
-            DispatchQueue.main.async {
-                self.user.socket = nil
-            }
+            client.close()
+            self.clientSocket = nil
         }
         setIsRepeat(value: false)
         clientCancellable?.cancel()
         clientCancellable = nil
     }
     
-    func sendMessageToServer(_ input: String) {
-        do {
-            // echoClient.write : 클라 -> 서버
-            if let clientSocket = user.socket {
-                try clientSocket.write(from: input)
-            } else {
-                // 서버가 없는 경우
-                stopClient()
-            }
-        } catch {
-            print("send Message Exception")
+    func sendMessage(_ message: String) {
+        if (isServer) {
+            sendMessageToClient(message)
+        } else {
+            sendMessageToServer(message)
         }
     }
     
-    func sendMessageToClient(_ input: String) {
+    func sendMessageToServer(_ message: String) {
         do {
-            if let linkedClientSocket = linkedClientSocket {
-                try linkedClientSocket.write(from: input)
+            if let clientSocket = clientSocket {
+                try clientSocket.write(from: message)
             } else {
-                print("send Message Error!")
+                setAlert(title: "Error", message: "연결된 서버 혹은 클라이언트 소켓이 없습니다.", active: true)
             }
         } catch {
-            print("send Message Exception")
+            setAlert(title: "Error", message: "[Client -> Server] send message failed", active: true)
         }
+    }
+    
+    func sendMessageToClient(_ message: String) {
+        do {
+            if let linkedClientSocket = linkedClientSocket {
+                try linkedClientSocket.write(from: message)
+            } else {
+                setAlert(title: "Error", message: "연결된 클라이언트가 없습니다", active: true)
+            }
+        } catch {
+            setAlert(title: "Error", message: "[Server -> Client] send message failed", active: true)
+        }
+    }
+    
+    func setAlert(title: String, message: String, active: Bool) {
+        alertTitle = title
+        alertMessage = message
+        isShowAlert = active
     }
 }

@@ -102,6 +102,7 @@
 		B75BE3B82B4A8AEA0072D29F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B7CD8D3A2B497E1500E1DB20 /* User.swift */,
 				B75BE3B92B4A8AF10072D29F /* Message.swift */,
 			);
 			path = Model;
@@ -215,7 +216,6 @@
 		B7B372902B41CA5F00D81D07 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B7CD8D3E2B49835100E1DB20 /* Model */,
 				B7B372912B41CABC00D81D07 /* Navigation */,
 			);
 			path = Core;
@@ -278,14 +278,6 @@
 				B7CD8D382B49617F00E1DB20 /* ChatRoomViewModel.swift */,
 			);
 			path = ChatRoom;
-			sourceTree = "<group>";
-		};
-		B7CD8D3E2B49835100E1DB20 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B7CD8D3A2B497E1500E1DB20 /* User.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
