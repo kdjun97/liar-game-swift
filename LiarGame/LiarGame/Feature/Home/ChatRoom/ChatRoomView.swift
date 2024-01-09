@@ -19,11 +19,17 @@ struct ChatRoomView: View {
                 Divider()
                     .frame(height: 1)
                 ScrollView {
-                    Text("Now, In the Chat Room")
                     ForEach(chatRoomViewModel.messageList, id:\.self) { message in
-                        Text("[\(message.nickname)]:\(message.message)")
+                        ChattingMessage(
+                            myIpAddress: chatRoomViewModel.user.myIP,
+                            nickname: message.nickname,
+                            message: message.message,
+                            ipAddress: message.ipAddress
+                        )
                     }
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 4)
                 ChattingTextField(chatRoomViewModel: chatRoomViewModel)
             }
         }
@@ -135,6 +141,73 @@ private struct SystemButton: View {
     }
 }
 
+private struct ChattingMessage: View {
+    let myIpAddress: String
+    let nickname: String
+    let message: String
+    let ipAddress: String
+    
+    init(
+        myIpAddress: String,
+        nickname: String,
+        message: String,
+        ipAddress: String
+    ) {
+        self.myIpAddress = myIpAddress
+        self.nickname = nickname
+        self.message = message
+        self.ipAddress = ipAddress
+    }
+    
+    fileprivate var body: some View {
+        if (myIpAddress == ipAddress) {
+            mySelfMessage()
+        } else {
+            audienceMessage()
+        }
+    }
+    
+    private func mySelfMessage() -> some View {
+        VStack(spacing: 0) {
+            Text(message)
+                .font(.system(size: 14))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
+                .background(.customPink)
+                .cornerRadius(10)
+        }
+        .padding(.trailing, 8)
+        .padding(.leading, 36)
+        .frame(maxWidth: .infinity, alignment: .topTrailing)
+    }
+    
+    private func audienceMessage() -> some View {
+        HStack(alignment:.top) {
+            Image("logo2")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .scaledToFit()
+                .clipShape(.circle)
+                .overlay(Circle().stroke(Color.black, lineWidth: 0.3))
+                .padding(.leading, 8)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(nickname)
+                    .font(.system(size: 14))
+                    .padding(.vertical, 6)
+                    .cornerRadius(10)
+                Text(message)
+                    .font(.system(size: 14))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 6)
+                    .background(.customPink)
+                    .cornerRadius(10)
+            }
+        }
+        .padding(.trailing, 36)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+    }
+}
+
 private struct ChattingTextField: View {
     @State private var text: String = ""
     @ObservedObject private var chatRoomViewModel: ChatRoomViewModel
@@ -184,4 +257,8 @@ extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
+}
+
+#Preview {
+    ChatRoomView(chatRoomViewModel: ChatRoomViewModel(user: User(serverIP: "1232", myIP: "123", nickname: "손흥민")))
 }
