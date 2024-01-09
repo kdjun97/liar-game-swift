@@ -56,17 +56,22 @@ struct CreateRoomView: View {
                         buttonAction: {
                             let isValidNickname = createRoomViewModel.validateNickName()
                             if (isValidNickname) {
-                                // TODO : Add IP Validation
-                                liarPath.paths.append(
-                                    .chatRoom(
-                                        isServer: true,
-                                        user: User(
-                                            serverIP: createRoomViewModel.myIPAddress,
-                                            myIP: createRoomViewModel.myIPAddress,
-                                            nickname: createRoomViewModel.nickname
+                                let isValidIPAddress = createRoomViewModel.myIPAddress.checkIpValidation(regex: .ipv4)
+                                if (isValidIPAddress) {
+                                    liarPath.paths.append(
+                                        .chatRoom(
+                                            isServer: true,
+                                            user: User(
+                                                serverIP: createRoomViewModel.myIPAddress,
+                                                myIP: createRoomViewModel.myIPAddress,
+                                                nickname: createRoomViewModel.nickname
+                                            )
                                         )
                                     )
-                                )
+                                } else {
+                                    alert = invalidIpAddress
+                                    createRoomViewModel.setAlert(isShow: true)
+                                }
                             } else {
                                 alert = invalidNicknameAlert
                                 createRoomViewModel.setAlert(isShow: true)
@@ -91,6 +96,12 @@ struct CreateRoomView: View {
     private let invalidNicknameAlert = Alert(
         title: Text("Error"),
         message: Text("Empty nickname!"),
+        dismissButton: .destructive(Text("Ok"))
+    )
+    
+    private let invalidIpAddress = Alert(
+        title: Text("Error"),
+        message: Text("Invalid Your IP Address.\nPlease Re-connect WIFI or check your WIFI is connected.\nIf you've followed the guid above, press the \"Load IP\" button and re-check correct IP Address format."),
         dismissButton: .destructive(Text("Ok"))
     )
     
