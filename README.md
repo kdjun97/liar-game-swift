@@ -19,6 +19,6 @@ Description: 돌아온 라이어게임!
 ## TODO  
 - IP Seting ✅
 - Game Rule
-- IP Validation
+- IP Validation ✅
 - Iterative Server
-- parsing logic
+- parsing logic ✅
