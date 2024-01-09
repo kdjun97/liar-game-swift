@@ -167,7 +167,7 @@ private struct ChattingMessage: View {
         }
     }
     
-    func mySelfMessage() -> some View {
+    private func mySelfMessage() -> some View {
         VStack(spacing: 0) {
             Text(message)
                 .font(.system(size: 14))
@@ -181,7 +181,7 @@ private struct ChattingMessage: View {
         .frame(maxWidth: .infinity, alignment: .topTrailing)
     }
     
-    func audienceMessage() -> some View {
+    private func audienceMessage() -> some View {
         HStack(alignment:.top) {
             Image("logo2")
                 .resizable()
