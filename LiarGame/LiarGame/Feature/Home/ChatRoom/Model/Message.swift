@@ -11,4 +11,5 @@ struct Message: Hashable {
     let nickname: String
     let message: String
     let ipAddress: String
+    let isContinuousMessage: Bool
 }

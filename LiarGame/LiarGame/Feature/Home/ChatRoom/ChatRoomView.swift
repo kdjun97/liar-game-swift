@@ -24,7 +24,8 @@ struct ChatRoomView: View {
                             myIpAddress: chatRoomViewModel.user.myIP,
                             nickname: message.nickname,
                             message: message.message,
-                            ipAddress: message.ipAddress
+                            ipAddress: message.ipAddress,
+                            isContinuousMessage: message.isContinuousMessage
                         )
                     }
                 }
@@ -146,17 +147,20 @@ private struct ChattingMessage: View {
     let nickname: String
     let message: String
     let ipAddress: String
+    let isContinuousMessage: Bool
     
     init(
         myIpAddress: String,
         nickname: String,
         message: String,
-        ipAddress: String
+        ipAddress: String,
+        isContinuousMessage: Bool
     ) {
         self.myIpAddress = myIpAddress
         self.nickname = nickname
         self.message = message
         self.ipAddress = ipAddress
+        self.isContinuousMessage = isContinuousMessage
     }
     
     fileprivate var body: some View {
@@ -173,7 +177,7 @@ private struct ChattingMessage: View {
                 .font(.system(size: 14))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 6)
-                .background(.customPink)
+                .background(.customMint)
                 .cornerRadius(10)
         }
         .padding(.trailing, 8)
@@ -183,24 +187,29 @@ private struct ChattingMessage: View {
     
     private func audienceMessage() -> some View {
         HStack(alignment:.top) {
-            Image("logo2")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .scaledToFit()
-                .clipShape(.circle)
-                .overlay(Circle().stroke(Color.black, lineWidth: 0.3))
-                .padding(.leading, 8)
+            if (isContinuousMessage == false) {
+                Image("logo2")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .scaledToFit()
+                    .clipShape(.circle)
+                    .overlay(Circle().stroke(Color.black, lineWidth: 0.3))
+                    .padding(.leading, 8)
+            }
             VStack(alignment: .leading, spacing: 0) {
-                Text(nickname)
-                    .font(.system(size: 14))
-                    .padding(.vertical, 6)
-                    .cornerRadius(10)
+                if (isContinuousMessage == false) {
+                    Text(nickname)
+                        .font(.system(size: 14))
+                        .padding(.vertical, 6)
+                        .cornerRadius(10)
+                }
                 Text(message)
                     .font(.system(size: 14))
                     .padding(.horizontal, 8)
                     .padding(.vertical, 6)
                     .background(.customPink)
                     .cornerRadius(10)
+                    .padding(.leading, isContinuousMessage ? 46 : 0)
             }
         }
         .padding(.trailing, 36)
