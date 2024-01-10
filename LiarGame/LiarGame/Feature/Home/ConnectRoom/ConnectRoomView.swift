@@ -68,18 +68,24 @@ struct ConnectRoomView: View {
                         buttonAction: {
                             let isValidNickname = connectRoomViewModel.validateNickName()
                             if (isValidNickname) {
-                                let isValidServerIP = connectRoomViewModel.validateServerIP()
+                                let isValidServerIP = connectRoomViewModel.serverIPAddress.checkIpValidation(regex: .ipv4)
                                 if (isValidServerIP) {
-                                    liarPath.paths.append(
-                                        .chatRoom(
-                                            isServer: false,
-                                            user: User(
-                                                serverIP: connectRoomViewModel.serverIPAddress,
-                                                myIP: connectRoomViewModel.myIPAddress,
-                                                nickname: connectRoomViewModel.nickname
+                                    let isValidMyIPAddress = connectRoomViewModel.myIPAddress.checkIpValidation(regex: .ipv4)
+                                    if (isValidMyIPAddress) {
+                                        liarPath.paths.append(
+                                            .chatRoom(
+                                                isServer: false,
+                                                user: User(
+                                                    serverIP: connectRoomViewModel.serverIPAddress,
+                                                    myIP: connectRoomViewModel.myIPAddress,
+                                                    nickname: connectRoomViewModel.nickname
+                                                )
                                             )
                                         )
-                                    )
+                                    } else {
+                                        alert = invalidMyIpAddress
+                                        connectRoomViewModel.setAlert(isShow: true)
+                                    }
                                 } else {
                                     alert = invalidServerIPAlert
                                     connectRoomViewModel.setAlert(isShow: true)
@@ -113,7 +119,13 @@ struct ConnectRoomView: View {
     
     private let invalidServerIPAlert = Alert(
         title: Text("Error"),
-        message: Text("Please input Server IP"),
+        message: Text("Invalid server IP Address.\nPlease Re-check server IP Address.\nIt must be ipv4 format and not an empty string"),
+        dismissButton: .destructive(Text("Ok"))
+    )
+    
+    private let invalidMyIpAddress = Alert(
+        title: Text("Error"),
+        message: Text("Invalid Your IP Address.\nPlease Re-connect WIFI or check your WIFI is connected.\nIf you've followed the guid above, press the \"Load IP\" button and re-check correct IP Address format."),
         dismissButton: .destructive(Text("Ok"))
     )
     

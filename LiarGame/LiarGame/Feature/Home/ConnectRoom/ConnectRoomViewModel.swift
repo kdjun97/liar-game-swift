@@ -70,12 +70,4 @@ class ConnectRoomViewModel: ObservableObject {
             return true
         }
     }
-    
-    func validateServerIP() -> Bool {
-        if (serverIPAddress.isEmpty) {
-            return false
-        } else {
-            return true
-        }
-    }
 }
