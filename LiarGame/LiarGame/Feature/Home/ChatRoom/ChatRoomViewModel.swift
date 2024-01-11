@@ -101,7 +101,8 @@ class ChatRoomViewModel: ObservableObject {
                                                         Message(
                                                             nickname: splitedMessage.nickname,
                                                             message: splitedMessage.message,
-                                                            ipAddress: splitedMessage.ipAddress
+                                                            ipAddress: splitedMessage.ipAddress,
+                                                            isContinuousMessage: splitedMessage.isContinuousMessage
                                                         )
                                                     )
                                                 }
@@ -171,7 +172,8 @@ class ChatRoomViewModel: ObservableObject {
                                                 Message(
                                                     nickname: splitedMessage.nickname,
                                                     message: splitedMessage.message,
-                                                    ipAddress: splitedMessage.ipAddress
+                                                    ipAddress: splitedMessage.ipAddress,
+                                                    isContinuousMessage: splitedMessage.isContinuousMessage
                                                 )
                                             )
                                         }
@@ -297,10 +299,23 @@ class ChatRoomViewModel: ObservableObject {
             return Message(
                 nickname: String(splitList[0]),
                 message: String(splitList[1]),
-                ipAddress: String(splitList[2])
+                ipAddress: String(splitList[2]),
+                isContinuousMessage: checkMessageContinuous(currentIpAddress: String(splitList[2]))
             )
         } else {
             return nil
+        }
+    }
+    
+    func checkMessageContinuous(currentIpAddress: String) -> Bool {
+        if (messageList.isEmpty) {
+            return false
+        } else {
+            if let message = messageList.last {
+                return message.ipAddress == currentIpAddress
+            } else {
+                return false
+            }
         }
     }
 }
