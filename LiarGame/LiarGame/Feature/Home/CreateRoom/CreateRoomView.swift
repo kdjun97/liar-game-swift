@@ -61,11 +61,9 @@ struct CreateRoomView: View {
                                     liarPath.paths.append(
                                         .chatRoom(
                                             isServer: true,
-                                            user: User(
-                                                serverIP: createRoomViewModel.myIPAddress,
-                                                myIP: createRoomViewModel.myIPAddress,
-                                                nickname: createRoomViewModel.nickname
-                                            )
+                                            serverIp: createRoomViewModel.myIPAddress,
+                                            myIpAddress: createRoomViewModel.myIPAddress,
+                                            nickname: createRoomViewModel.nickname
                                         )
                                     )
                                 } else {
