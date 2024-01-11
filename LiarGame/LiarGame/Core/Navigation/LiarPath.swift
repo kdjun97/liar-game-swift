@@ -18,5 +18,10 @@ class LiarPath: ObservableObject {
 enum PathDestination: Hashable {
     case createRoom
     case connectRoom
-    case chatRoom(isServer: Bool = false, user: User)
+    case chatRoom(
+        isServer: Bool = false,
+        serverIp: String,
+        myIpAddress: String,
+        nickname: String
+    )
 }

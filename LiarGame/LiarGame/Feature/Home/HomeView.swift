@@ -29,11 +29,15 @@ struct HomeView: View {
                             ConnectRoomView()
                                 .navigationBarBackButtonHidden(true)
                                 .environmentObject(liarPath)
-                        case let .chatRoom(isServer, user):
+                        case let .chatRoom(isServer, serverIp, myIp, nickname):
                             ChatRoomView(
                                 chatRoomViewModel: ChatRoomViewModel(
                                     isServer: isServer,
-                                    user: user
+                                    user: User(
+                                        serverIP: serverIp,
+                                        myIP: myIp,
+                                        nickname: nickname
+                                    )
                                 )
                             )
                                 .navigationBarBackButtonHidden(true)
