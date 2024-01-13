@@ -18,14 +18,16 @@ class ChatRoomViewModel: ObservableObject {
     
     private var serverSocket: Socket?
     private var clientSocket: Socket?
-    private var linkedClientSocket: Socket?
+    private var linkedClientSocket: [Socket?] = []
     
     private var serverCancellable: AnyCancellable?
     private var clientCancellable: AnyCancellable?
     private var isRepeat: Bool = false
+    private var isAcceptRepeat: Bool = false
 
     private let port: Int = 12345
     private let bufferSize: Int = 512
+    private let exitMessage: String = "[EXITMESSAGE]"
     @Published var messageList: [Message] = []
     
     init(
@@ -50,7 +52,6 @@ class ChatRoomViewModel: ObservableObject {
     
     func gameExitButtonTapped() -> Bool {
         if (isServer) {
-            // 서버라면, 클라이언트 리스트 정리하고 close, 일단은 지금은 바로 close하는 걸로 구현
             stopServer()
             return true
         } else {
@@ -60,62 +61,65 @@ class ChatRoomViewModel: ObservableObject {
     }
     
     func startServer() {
-        do {
-            serverSocket = try Socket.create(family: .inet)
-            guard let server = serverSocket else {
-                setAlert(title: "Server Error", message: "Server Socket Create Failed!", active: true)
-                return
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                self.serverSocket = try Socket.create(family: .inet)
+                guard let server = self.serverSocket else {
+                    self.setAlert(title: "Server Error", message: "Server Socket Create Failed!", active: true)
+                    return
+                }
+                
+                try server.listen(on: self.port)
+                
+                self.isAcceptRepeat = true
+                repeat {
+                    let clientSocket = try server.acceptClientConnection()
+                    print("Accepted Connection from : \(clientSocket.remoteHostname)")
+                    self.linkedClientSocket.append(clientSocket)
+                    
+                    self.iterativeServerAccept(socket: clientSocket)
+                } while self.isAcceptRepeat
+                
+                
+            } catch let error {
+                self.setAlert(title: "Unknown", message: error.localizedDescription, active: true)
             }
-            
-            try server.listen(on: port)
-            
-            iterativeServer()
-        } catch let error {
-            setAlert(title: "Unknown", message: error.localizedDescription, active: true)
         }
     }
     
-    func iterativeServer() {
-        setIsRepeat(value: true)
+    func iterativeServerAccept(socket: Socket) {
+        DispatchQueue.global(qos: .background).async {
+            do {
+                self.setIsRepeat(value: true)
 
-        if let socket = serverSocket {
-            DispatchQueue.global(qos: .background).async {
-                do {
-                    repeat {
-                        let clientSocket = try socket.acceptClientConnection()
-                        print("Accepted Connection from : \(clientSocket.remoteHostname)")
-                        self.linkedClientSocket = clientSocket
-                        
-                        repeat {
-                            self.serverCancellable = self.readDataOnServerSocket(socket: clientSocket)
-                                .sink(
-                                    receiveCompletion: {_ in},
-                                    receiveValue: { data in
-                                        if (data == "EXIT") {
-                                            print("exit 받음")
-                                            self.stopServer()
-                                        } else {
-                                            if let splitedMessage = self.splitStringMessage(message: data) {
-                                                DispatchQueue.main.async {
-                                                    self.messageList.append(
-                                                        Message(
-                                                            nickname: splitedMessage.nickname,
-                                                            message: splitedMessage.message,
-                                                            ipAddress: splitedMessage.ipAddress
-                                                        )
-                                                    )
-                                                }
-                                            }
+                repeat {
+                    self.serverCancellable = self.readDataOnServerSocket(socket: socket)
+                        .sink(
+                            receiveCompletion: {_ in},
+                            receiveValue: { data in
+                                if (data.contains(self.exitMessage)) {
+                                    self.stopServer()
+                                } else {
+                                    print(data)
+                                    if let splitedMessage = self.splitStringMessage(message: data) {
+                                        self.echoMessageToLinkedClientSockets(message: splitedMessage)
+                                        DispatchQueue.main.async {
+                                            self.messageList.append(
+                                                Message(
+                                                    nickname: splitedMessage.nickname,
+                                                    message: splitedMessage.message,
+                                                    ipAddress: splitedMessage.ipAddress,
+                                                    isContinuousMessage: splitedMessage.isContinuousMessage
+                                                )
+                                            )
                                         }
-                                    })
-                        } while self.linkedClientSocket != nil
-                    } while self.isRepeat
-                } catch let error {
-                    self.setAlert(title: "Server Error", message: error.localizedDescription, active: true)
-                }
+                                    }
+                                }
+                            })
+                } while self.isRepeat
+            } catch let error {
+                self.setAlert(title: "Server Error", message: error.localizedDescription, active: true)
             }
-        } else {
-            setAlert(title: "Server Error", message: "서버 소켓이 열려있지 않습니다.", active: true)
         }
     }
     
@@ -133,6 +137,21 @@ class ChatRoomViewModel: ObservableObject {
                 }
             } catch let error {
                 promise(.failure(error))
+            }
+        }
+    }
+    
+    func echoMessageToLinkedClientSockets(message: Message) {
+        self.linkedClientSocket.forEach { clientSocket in
+            if let clientSocket = clientSocket {
+                if (clientSocket.remoteHostname != message.ipAddress) {
+                    let message = "\(message.nickname)\\\(message.message)\\\(message.ipAddress)"
+                    do {
+                        try clientSocket.write(from: message)
+                    } catch {
+                        setAlert(title: "Error", message: "[Server -> Client] send message failed", active: true)
+                    }
+                }
             }
         }
     }
@@ -161,7 +180,7 @@ class ChatRoomViewModel: ObservableObject {
                         .sink(
                             receiveCompletion: {_ in},
                             receiveValue: { data in
-                                if (data == "EXIT") {
+                                if (data == self.exitMessage) {
                                     print("exit 받음")
                                     self.stopClient()
                                 } else {
@@ -171,7 +190,8 @@ class ChatRoomViewModel: ObservableObject {
                                                 Message(
                                                     nickname: splitedMessage.nickname,
                                                     message: splitedMessage.message,
-                                                    ipAddress: splitedMessage.ipAddress
+                                                    ipAddress: splitedMessage.ipAddress,
+                                                    isContinuousMessage: splitedMessage.isContinuousMessage
                                                 )
                                             )
                                         }
@@ -204,19 +224,25 @@ class ChatRoomViewModel: ObservableObject {
     }
     
     func stopServer() {
-        if let linkedClientSocket = linkedClientSocket {
-            do {
-                try linkedClientSocket.write(from: "EXIT")
-                linkedClientSocket.close()
-                self.linkedClientSocket = nil
-            } catch {
-                // QUIT 못보냈을 경우
+        for (index, socket) in linkedClientSocket.enumerated() {
+            if let socket = socket {
+                do {
+                    try socket.write(from: exitMessage)
+                    socket.close()
+                    linkedClientSocket[index] = nil
+                } catch {
+                    // QUIT 못보냈을 경우
+                }
             }
         }
+        
         setIsRepeat(value: false)
+        isAcceptRepeat = false
         
         serverCancellable?.cancel()
         serverCancellable = nil
+        
+        linkedClientSocket.removeAll()
         
         if let server = serverSocket {
             server.close()
@@ -227,7 +253,8 @@ class ChatRoomViewModel: ObservableObject {
     func stopClient() {
         if let client = clientSocket {
             do {
-                try client.write(from: "EXIT")
+                let message = "\(exitMessage)/\(user.myIP)"
+                try client.write(from: exitMessage)
             } catch {
                 // QUIT 못보냈을 경우
             }
@@ -267,21 +294,25 @@ class ChatRoomViewModel: ObservableObject {
     }
     
     func sendMessageToClient(_ message: String) -> Bool {
-        do {
-            if let linkedClientSocket = linkedClientSocket {
+        if linkedClientSocket.isEmpty {
+            setAlert(title: "Error", message: "연결된 클라이언트가 없습니다", active: true)
+            return false
+        } else {
+            do {
                 let message = "\(user.nickname)\\\(message)\\\(user.myIP)"
-                try linkedClientSocket.write(from: message)
+                try linkedClientSocket.forEach { socket in
+                    if let socket = socket {
+                        try socket.write(from: message)
+                    }
+                }
                 if let splitedMessage = splitStringMessage(message: message) {
                     messageList.append(splitedMessage)
                 }
                 return true
-            } else {
-                setAlert(title: "Error", message: "연결된 클라이언트가 없습니다", active: true)
+            } catch {
+                setAlert(title: "Error", message: "[Server -> Client] send message failed", active: true)
                 return false
             }
-        } catch {
-            setAlert(title: "Error", message: "[Server -> Client] send message failed", active: true)
-            return false
         }
     }
     
@@ -297,10 +328,23 @@ class ChatRoomViewModel: ObservableObject {
             return Message(
                 nickname: String(splitList[0]),
                 message: String(splitList[1]),
-                ipAddress: String(splitList[2])
+                ipAddress: String(splitList[2]),
+                isContinuousMessage: checkMessageContinuous(currentIpAddress: String(splitList[2]))
             )
         } else {
             return nil
+        }
+    }
+    
+    func checkMessageContinuous(currentIpAddress: String) -> Bool {
+        if (messageList.isEmpty) {
+            return false
+        } else {
+            if let message = messageList.last {
+                return message.ipAddress == currentIpAddress
+            } else {
+                return false
+            }
         }
     }
 }
