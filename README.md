@@ -20,5 +20,5 @@ Description: 돌아온 라이어게임!
 - IP Seting ✅
 - Game Rule
 - IP Validation ✅
-- Iterative Server
+- Iterative Server ✅
 - parsing logic ✅
