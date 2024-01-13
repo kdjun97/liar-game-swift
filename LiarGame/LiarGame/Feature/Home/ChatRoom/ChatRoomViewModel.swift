@@ -77,7 +77,7 @@ class ChatRoomViewModel: ObservableObject {
                     print("Accepted Connection from : \(clientSocket.remoteHostname)")
                     self.linkedClientSocket.append(clientSocket)
                     
-                    self.iterativeServer(socket: clientSocket)
+                    self.iterativeServerAccept(socket: clientSocket)
                 } while self.isAcceptRepeat
                 
                 
@@ -87,7 +87,7 @@ class ChatRoomViewModel: ObservableObject {
         }
     }
     
-    func iterativeServer(socket: Socket) {
+    func iterativeServerAccept(socket: Socket) {
         DispatchQueue.global(qos: .background).async {
             do {
                 self.setIsRepeat(value: true)
